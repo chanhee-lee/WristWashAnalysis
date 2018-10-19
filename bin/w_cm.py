@@ -109,13 +109,30 @@ for counter in xrange(0,len(Z),step_size):
 	K = stats.kurtosis(R,axis=0) # ND Kurtosis
 	RMS = sqrt(mean(R**2,axis=0)) # Root Mean Square
 
-	# H should be stacked arrays of : 
+	"""
+	hstack: 
+	>>> a = np.array((1,2,3))
+	>>> b = np.array((2,3,4))
+	>>> np.hstack((a,b))
+	array([1, 2, 3, 2, 3, 4])
+	>>> a = np.array([[1],[2],[3]])
+	>>> b = np.array([[2],[3],[4]])
+	>>> np.hstack((a,b))
+	array([[1, 2],
+		[2, 3],
+		[3, 4]])
+	"""
+
+	# H should be stacked arrays of : M, V, SK, K, RMS, L 
 	H = hstack((M,V))
 	H = hstack((H,SK))
 	H = hstack((H,K))
 	H = hstack((H,RMS))
 
 	H = hstack((H,L))
+	# All: Stacks all hstacks vertically 
+	# Row: Horizontally stacked features for on data
+	# Col: All the features 
 	if counter==0:
 		All = H
 	else:
@@ -123,7 +140,7 @@ for counter in xrange(0,len(Z),step_size):
 
 
 # Get features and labels
-# X is feature, Y is label 
+# X is all the feature, Y is all the label # *5 because num of features? 
 X = All[:,:number_of_inputs*5]
 Y = All[:,number_of_inputs*5]
 
