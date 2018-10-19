@@ -67,6 +67,25 @@ for target_participant_counter in xrange(1,22):
 	# D: N-dimensional array that delimits waccel_tc_ss_label by , 
 	D = genfromtxt(participant_file, delimiter=',')
 
+	"""
+	>>> a = np.array([1, 2, 3])
+	>>> b = np.array([2, 3, 4])
+	>>> np.vstack((a,b))
+	array([[1, 2, 3],
+		[2, 3, 4]])
+	>>>
+	>>> a = np.array([[1], [2], [3]])
+	>>> b = np.array([[2], [3], [4]])
+	>>> np.vstack((a,b))
+	array([[1],
+		[2],
+		[3],
+		[2],
+		[3],
+		[4]])
+	"""
+
+	# Z is a stack of participant datas stacked vertically 
 	# If first time in loop, set Z to D
 	if first_time_in_loop==1:
 		first_time_in_loop = 0
@@ -76,7 +95,8 @@ for target_participant_counter in xrange(1,22):
 		Z = vstack((Z,D))
 
 # Remove the relative timestamp
-#[:,1:] == [end index] [from 1 to end index]
+# [:,1:] == [end index] [from 1 to end index]
+# truncates 0 column which has relative timestamp
 Z = Z[:,1:]
 
 print ""	
@@ -84,6 +104,7 @@ print "Shape of Z: " + str(Z.shape)
 
 # Number of inputs # .shape[1] gives number of columns # the number of entries in one input 
 number_of_inputs = Z.shape[1] - 1
+# should be called index of last column 
 
 # -----------------------------------------------------------------------------------
 #
