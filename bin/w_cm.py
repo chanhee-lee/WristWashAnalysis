@@ -64,21 +64,25 @@ for target_participant_counter in xrange(1,22):
 	print "File: " + participant_file
 	print ""
 
+	# D: N-dimensional array that delimits waccel_tc_ss_label by , 
 	D = genfromtxt(participant_file, delimiter=',')
 
+	# If first time in loop, set Z to D
 	if first_time_in_loop==1:
 		first_time_in_loop = 0
 		Z = D
+	# Else stack Z on top of D # Adds D on bottom 
 	else:
 		Z = vstack((Z,D))
 
 # Remove the relative timestamp
+#[:,1:] == [end index] [from 1 to end index]
 Z = Z[:,1:]
 
-print ""
+print ""	
 print "Shape of Z: " + str(Z.shape)
 
-# Number of inputs
+# Number of inputs # .shape[1] gives number of columns # the number of entries in one input 
 number_of_inputs = Z.shape[1] - 1
 
 # -----------------------------------------------------------------------------------
@@ -90,18 +94,22 @@ number_of_inputs = Z.shape[1] - 1
 # Calculate features for frame
 for counter in xrange(0,len(Z),step_size):
 	
-	# Get the label
+	# Get the label # from counter row # label is in last column (num_of_input)
 	L = Z[counter, number_of_inputs]
 
 	# Get rows from which to calculate features
+	# row: frame size from counter onwards
+	# col: beginning to number of columns 
 	R = Z[counter:counter+frame_size, :number_of_inputs]
 
-	M = mean(R,axis=0)
-	V = var(R,axis=0)
-	SK = stats.skew(R,axis=0)
-	K = stats.kurtosis(R,axis=0)
-	RMS = sqrt(mean(R**2,axis=0))
+	# Calculate features
+	M = mean(R,axis=0) # Mean
+	V = var(R,axis=0) # Variance
+	SK = stats.skew(R,axis=0) # ND skew
+	K = stats.kurtosis(R,axis=0) # ND Kurtosis
+	RMS = sqrt(mean(R**2,axis=0)) # Root Mean Square
 
+	# H should be stacked arrays of : 
 	H = hstack((M,V))
 	H = hstack((H,SK))
 	H = hstack((H,K))
@@ -115,6 +123,7 @@ for counter in xrange(0,len(Z),step_size):
 
 
 # Get features and labels
+# X is feature, Y is label 
 X = All[:,:number_of_inputs*5]
 Y = All[:,number_of_inputs*5]
 
@@ -149,7 +158,7 @@ cm = confusion_matrix(y_test, y_pred)
 # print(cm)
 
 # Show confusion matrix in a separate window
-plt.matshow(cm)
+plt.matshow(cm)	
 plt.title('Confusion matrix')
 plt.colorbar()
 plt.ylabel('True label')
