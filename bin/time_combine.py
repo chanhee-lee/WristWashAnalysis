@@ -51,7 +51,7 @@ with open("../raw/datafiles/time_accel_gyro.csv", 'wb') as csvoutputfile:
             gyroZ.append(float(row[3]))
 
     for i in range(0, len(accelX), 1):
-        row = [] # truncate decimal to first decimal 
+        row = [] # truncate decimal to first decimal
         row.append(float(i)/SAMPLING_RATE * 1000)
         row.append(accelX[i])
         row.append(accelY[i])
