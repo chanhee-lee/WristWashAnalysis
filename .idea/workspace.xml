@@ -2,7 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a1956f6b-dc08-4b54-82f8-78b8dce4a5ea" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/bin/combine.py" beforeDir="false" afterPath="$PROJECT_DIR$/bin/combine.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/combine.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/raw/accel/ACCEL16.csv" beforeDir="false" afterPath="$PROJECT_DIR$/raw/datafiles/accel/ACCEL16.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/raw/accel/ACCEL17.csv" beforeDir="false" afterPath="$PROJECT_DIR$/raw/datafiles/accel/ACCEL17.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/raw/accel/ACCEL18.csv" beforeDir="false" afterPath="$PROJECT_DIR$/raw/datafiles/accel/ACCEL18.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/raw/accel/ACCEL19.csv" beforeDir="false" afterPath="$PROJECT_DIR$/raw/datafiles/accel/ACCEL19.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/raw/accel/ACCEL20.csv" beforeDir="false" afterPath="$PROJECT_DIR$/raw/datafiles/accel/ACCEL20.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/raw/accel/ACCEL21.csv" beforeDir="false" afterPath="$PROJECT_DIR$/raw/datafiles/accel/ACCEL21.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/raw/gyro/GYRO16.csv" beforeDir="false" afterPath="$PROJECT_DIR$/raw/datafiles/gyro/GYRO16.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/raw/gyro/GYRO17.csv" beforeDir="false" afterPath="$PROJECT_DIR$/raw/datafiles/gyro/GYRO17.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/raw/gyro/GYRO18.csv" beforeDir="false" afterPath="$PROJECT_DIR$/raw/datafiles/gyro/GYRO18.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/raw/gyro/GYRO19.csv" beforeDir="false" afterPath="$PROJECT_DIR$/raw/datafiles/gyro/GYRO19.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/raw/gyro/GYRO20.csv" beforeDir="false" afterPath="$PROJECT_DIR$/raw/datafiles/gyro/GYRO20.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/raw/gyro/GYRO21.csv" beforeDir="false" afterPath="$PROJECT_DIR$/raw/datafiles/gyro/GYRO21.csv" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -14,108 +27,92 @@
     <session id="1994779576">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="1" />
+          <entry key="project.closed" value="3" />
           <entry key="project.open.time.1" value="1" />
+          <entry key="project.open.time.11" value="1" />
           <entry key="project.open.time.4" value="1" />
-          <entry key="project.opened" value="2" />
+          <entry key="project.open.time.5" value="1" />
+          <entry key="project.opened" value="4" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="py" value="1032" />
+          <entry key="py" value="1315" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Python" value="1032" />
+          <entry key="Python" value="1315" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="csv" value="13" />
-          <entry key="py" value="8" />
+          <entry key="csv" value="17" />
+          <entry key="py" value="9" />
           <entry key="sh" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="Bash" value="1" />
-          <entry key="CSV" value="13" />
-          <entry key="Python" value="8" />
+          <entry key="CSV" value="17" />
+          <entry key="Python" value="9" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/bin/preprocess.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="5" selection-start-line="5" selection-end-line="5" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/bin/combine.py">
+        <entry file="file://$PROJECT_DIR$/bin/time_combine.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="14" column="11" lean-forward="true" selection-start-line="14" selection-start-column="11" selection-end-line="14" selection-end-column="11" />
+            <state relative-caret-position="221">
+              <caret line="53" column="53" selection-start-line="53" selection-start-column="53" selection-end-line="53" selection-end-column="53" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/raw/accel/ACCEL17.csv">
+        <entry file="file://$PROJECT_DIR$/raw/datafiles/time_accel_gyro.csv">
           <provider selected="true" editor-type-id="csv-text-editor">
-            <state relative-caret-position="-25524" />
+            <state relative-caret-position="-13600" />
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/raw/gyro/GYRO17.csv">
+        <entry file="file://$PROJECT_DIR$/raw/datafiles/accel/ACCEL16.csv">
           <provider selected="true" editor-type-id="csv-text-editor">
-            <state relative-caret-position="136">
-              <caret line="8" column="23" selection-start-line="8" selection-start-column="23" selection-end-line="8" selection-end-column="23" />
+            <state relative-caret-position="119">
+              <caret line="7" column="27" selection-start-line="7" selection-start-column="27" selection-end-line="7" selection-end-column="27" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/raw/accel/ACCEL18.csv">
+        <entry file="file://$PROJECT_DIR$/raw/datafiles/gyro/GYRO16.csv">
           <provider selected="true" editor-type-id="csv-text-editor">
-            <state relative-caret-position="-17055" />
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/raw/gyro/GYRO18.csv">
-          <provider selected="true" editor-type-id="csv-text-editor">
-            <state relative-caret-position="-112799" />
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/raw/accel/ACCEL19.csv">
-          <provider selected="true" editor-type-id="csv-text-editor">
-            <state relative-caret-position="21624">
-              <caret line="1272" column="40" lean-forward="true" selection-start-line="1272" selection-start-column="40" selection-end-line="1272" selection-end-column="40" />
+            <state relative-caret-position="221">
+              <caret line="29" column="45" selection-start-line="29" selection-start-column="45" selection-end-line="29" selection-end-column="45" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/raw/gyro/GYRO19.csv">
-          <provider selected="true" editor-type-id="csv-text-editor">
-            <state relative-caret-position="-111949" />
+        <entry file="file://$PROJECT_DIR$/Grapher/task1.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="255">
+              <caret line="15" column="17" selection-start-line="15" selection-start-column="17" selection-end-line="15" selection-end-column="17" />
+              <folding>
+                <element signature="e#0#20#0" expanded="true" />
+              </folding>
+            </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/bin/w_timeconvert.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-115">
+            <state relative-caret-position="578">
               <caret line="35" selection-start-line="35" selection-end-line="35" />
             </state>
           </provider>
@@ -124,7 +121,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/bin/w_annotation.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
+            <state relative-caret-position="323">
               <caret line="19" selection-start-line="19" selection-end-line="26" selection-end-column="18" />
               <folding>
                 <element signature="e#742#766#0" expanded="true" />
@@ -142,6 +139,11 @@
       </list>
     </option>
   </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>fusrodah</find>
+    </findStrings>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -154,6 +156,7 @@
         <option value="$PROJECT_DIR$/bin/annotation.py" />
         <option value="$PROJECT_DIR$/bin/preprocess.py" />
         <option value="$PROJECT_DIR$/bin/combine.py" />
+        <option value="$PROJECT_DIR$/bin/time_combine.py" />
       </list>
     </option>
   </component>
@@ -167,7 +170,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -189,23 +191,23 @@
               <item name="WristWashAnalysis" type="b2602c69:ProjectViewProjectNode" />
               <item name="WristWashAnalysis" type="462c0819:PsiDirectoryNode" />
               <item name="raw" type="462c0819:PsiDirectoryNode" />
-              <item name="accel" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="WristWashAnalysis" type="b2602c69:ProjectViewProjectNode" />
-              <item name="WristWashAnalysis" type="462c0819:PsiDirectoryNode" />
-              <item name="raw" type="462c0819:PsiDirectoryNode" />
-              <item name="gyro" type="462c0819:PsiDirectoryNode" />
+              <item name="datafiles" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Joshua\Documents\School\CS 4605\WristWashAnalysis\raw\datafiles" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -247,7 +249,7 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info anchor="bottom" id="Terminal" order="8" weight="0.32867134" />
+      <window_info anchor="bottom" id="Terminal" order="8" visible="true" weight="0.32867134" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
       <window_info anchor="bottom" id="Python Console" order="10" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -263,9 +265,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
           <caret line="42" selection-start-line="42" selection-end-line="42" />
-          <folding>
-            <element signature="e#742#773#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -289,13 +288,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/bin/w_timeconvert.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-115">
-          <caret line="35" selection-start-line="35" selection-end-line="35" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/bin/annotation.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -306,9 +298,42 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/raw/combine_accel_gyro/ACCEL_GYRO.csv" />
+    <entry file="file://$PROJECT_DIR$/raw/datafiles/gyro/GYRO17.csv">
+      <provider editor-type-id="csv-text-editor">
+        <state relative-caret-position="-116780">
+          <caret line="8" column="23" selection-start-line="8" selection-start-column="23" selection-end-line="8" selection-end-column="23" />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/raw/datafiles/accel/ACCEL18.csv">
+      <provider editor-type-id="csv-text-editor">
+        <state relative-caret-position="-16820" />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/raw/datafiles/accel/ACCEL19.csv">
+      <provider editor-type-id="csv-text-editor">
+        <state relative-caret-position="21624">
+          <caret line="1272" column="40" lean-forward="true" selection-start-line="1272" selection-start-column="40" selection-end-line="1272" selection-end-column="40" />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/raw/datafiles/gyro/GYRO19.csv">
+      <provider selected="true" editor-type-id="csv-text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bin/w_timeconvert.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="578">
+          <caret line="35" selection-start-line="35" selection-end-line="35" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/bin/w_annotation.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
+        <state relative-caret-position="323">
           <caret line="19" selection-start-line="19" selection-end-line="26" selection-end-column="18" />
           <folding>
             <element signature="e#742#766#0" expanded="true" />
@@ -316,61 +341,58 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/raw/combine_accel_gyro/ACCEL_GYRO.csv">
-      <provider selected="true" editor-type-id="csv-text-editor">
-        <state relative-caret-position="-16970" />
+    <entry file="file://$PROJECT_DIR$/raw/datafiles/gyro/GYRO18.csv">
+      <provider editor-type-id="csv-text-editor">
+        <state relative-caret-position="-91994" />
       </provider>
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/raw/accel/ACCEL16.csv">
-      <provider selected="true" editor-type-id="csv-text-editor">
-        <state relative-caret-position="-17055" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/raw/gyro/GYRO16.csv">
-      <provider selected="true" editor-type-id="csv-text-editor">
-        <state relative-caret-position="-125566">
-          <caret line="17" column="37" selection-start-line="17" selection-start-column="37" selection-end-line="17" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/raw/gyro/GYRO19.csv">
-      <provider selected="true" editor-type-id="csv-text-editor">
-        <state relative-caret-position="-111949" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/raw/accel/ACCEL18.csv">
-      <provider selected="true" editor-type-id="csv-text-editor">
-        <state relative-caret-position="-17055" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/raw/gyro/GYRO18.csv">
-      <provider selected="true" editor-type-id="csv-text-editor">
-        <state relative-caret-position="-112799" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/raw/accel/ACCEL19.csv">
-      <provider selected="true" editor-type-id="csv-text-editor">
-        <state relative-caret-position="21624">
-          <caret line="1272" column="40" lean-forward="true" selection-start-line="1272" selection-start-column="40" selection-end-line="1272" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/raw/gyro/GYRO17.csv">
-      <provider selected="true" editor-type-id="csv-text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="23" selection-start-line="8" selection-start-column="23" selection-end-line="8" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/raw/accel/ACCEL17.csv">
-      <provider selected="true" editor-type-id="csv-text-editor">
+    <entry file="file://$PROJECT_DIR$/raw/datafiles/accel/ACCEL17.csv">
+      <provider editor-type-id="csv-text-editor">
         <state relative-caret-position="-25524" />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Grapher/task1.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" column="17" selection-start-line="15" selection-start-column="17" selection-end-line="15" selection-end-column="17" />
+          <folding>
+            <element signature="e#0#20#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/raw/datafiles/accel/ACCEL16.csv">
+      <provider selected="true" editor-type-id="csv-text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="27" selection-start-line="7" selection-start-column="27" selection-end-line="7" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/raw/datafiles/gyro/GYRO16.csv">
+      <provider selected="true" editor-type-id="csv-text-editor">
+        <state relative-caret-position="221">
+          <caret line="29" column="45" selection-start-line="29" selection-start-column="45" selection-end-line="29" selection-end-column="45" />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/bin/combine.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="14" column="11" lean-forward="true" selection-start-line="14" selection-start-column="11" selection-end-line="14" selection-end-column="11" />
+        <state relative-caret-position="123">
+          <caret line="21" column="14" selection-end-line="52" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/raw/datafiles/time_accel_gyro.csv">
+      <provider selected="true" editor-type-id="csv-text-editor">
+        <state relative-caret-position="-13600" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bin/time_combine.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="53" column="53" selection-start-line="53" selection-start-column="53" selection-end-line="53" selection-end-column="53" />
         </state>
       </provider>
     </entry>

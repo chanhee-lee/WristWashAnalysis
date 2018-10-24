@@ -5,7 +5,8 @@ import csv
 
 # -------------------------------------------------------------------------------
 #
-# 	Combines accelerometer and gyroscope data into another file ACCEL_GYRO.csv
+# 	Combines timestamp in milliseconds, accelerometer, and gyroscope data
+#   into another file tc_accel_gyro.csv
 #
 # -------------------------------------------------------------------------------
 
@@ -19,21 +20,28 @@ gyroX = []
 gyroY = []
 gyroZ = []
 
-with open("../raw/combine_accel_gyro/ACCEL_GYRO.csv", 'wb') as csvoutputfile:
+# time stamps
+timeStamps = []
+
+# Sampling Rate Constant
+SAMPLING_RATE = 100
+
+with open("../raw/datafiles/time_accel_gyro.csv", 'wb') as csvoutputfile:
 
     csvwriter = csv.writer(csvoutputfile, delimiter=',', quotechar='|', quoting=csv.QUOTE_MINIMAL)
 
     # loads accel data into lists
-    with open('../raw/accel/ACCEL16.csv', 'rb') as csvinputfile:
+    with open('../raw/datafiles/accel/ACCEL16.csv', 'rb') as csvinputfile:
 
         csvreader = csv.reader(csvinputfile, delimiter=',', quotechar='|')
+
         for row in csvreader:
             accelX.append(float(row[1]))
             accelY.append(float(row[2]))
             accelZ.append(float(row[3]))
 
     # loads gyro data into lists
-    with open('../raw/gyro/GYRO16.csv', 'rb') as csvinputfile:
+    with open('../raw/datafiles/gyro/GYRO16.csv', 'rb') as csvinputfile:
 
         csvreader = csv.reader(csvinputfile, delimiter=',', quotechar='|')
 
@@ -43,7 +51,8 @@ with open("../raw/combine_accel_gyro/ACCEL_GYRO.csv", 'wb') as csvoutputfile:
             gyroZ.append(float(row[3]))
 
     for i in range(0, len(accelX), 1):
-        row = []
+        row = [] # truncate decimal to first decimal 
+        row.append(float(i)/SAMPLING_RATE * 1000)
         row.append(accelX[i])
         row.append(accelY[i])
         row.append(accelZ[i])
