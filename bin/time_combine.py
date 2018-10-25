@@ -1,12 +1,19 @@
 
 import csv
+from argparse import ArgumentParser
 
+parser = ArgumentParser()
+parser.add_argument("pnumber")
+args = parser.parse_args()
 
 
 # -------------------------------------------------------------------------------
 #
 # 	Combines timestamp in milliseconds, accelerometer, and gyroscope data
-#   into another file tc_accel_gyro.csv
+#   into another file tc_accel_gyro_label_fileNumber.csv
+#   To execute this file (time_combine.py), in your terminal type
+#   python time_combine.py number
+#   number is the file number attached to the end of your accel/gyro.csv
 #
 # -------------------------------------------------------------------------------
 
@@ -26,12 +33,29 @@ timeStamps = []
 # Sampling Rate Constant
 SAMPLING_RATE = 100
 
-with open("../raw/datafiles/time_accel_gyro.csv", 'wb') as csvoutputfile:
+# Labels for each hand washing gesture
+label = ""
+if int(args.pnumber) % 6 == 1:
+    label = "Rubbing Palms"
+elif int(args.pnumber) % 6 == 2:
+    label = "Rubbing Back of Left Hand"
+elif int(args.pnumber) % 6 == 3:
+    label = "Rubbing Back of Right Hand"
+elif int(args.pnumber) % 6 == 4:
+    label = "Rubbing Between Fingers"
+elif int(args.pnumber) % 6 == 5:
+    label = "Rubbing Under Right Nails"
+elif int(args.pnumber) % 6 == 0:
+    label = "Rubbing Under Left Nails"
+else:
+    label = "No Movement"
+
+with open("../raw/datafiles/combine/tc_accel_gyro_label_" + args.pnumber + ".csv", 'wb') as csvoutputfile:
 
     csvwriter = csv.writer(csvoutputfile, delimiter=',', quotechar='|', quoting=csv.QUOTE_MINIMAL)
 
     # loads accel data into lists
-    with open('../raw/datafiles/accel/ACCEL16.csv', 'rb') as csvinputfile:
+    with open('../raw/datafiles/accel/ACCEL' + args.pnumber + '.csv', 'rb') as csvinputfile:
 
         csvreader = csv.reader(csvinputfile, delimiter=',', quotechar='|')
 
@@ -41,7 +65,7 @@ with open("../raw/datafiles/time_accel_gyro.csv", 'wb') as csvoutputfile:
             accelZ.append(float(row[3]))
 
     # loads gyro data into lists
-    with open('../raw/datafiles/gyro/GYRO16.csv', 'rb') as csvinputfile:
+    with open('../raw/datafiles/gyro/GYRO' + args.pnumber + '.csv', 'rb') as csvinputfile:
 
         csvreader = csv.reader(csvinputfile, delimiter=',', quotechar='|')
 
@@ -59,4 +83,5 @@ with open("../raw/datafiles/time_accel_gyro.csv", 'wb') as csvoutputfile:
         row.append(gyroX[i])
         row.append(gyroY[i])
         row.append(gyroZ[i])
+        row.append(label)
         csvwriter.writerow(row)
