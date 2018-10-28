@@ -63,7 +63,7 @@ args = parser.parse_args()
 print "smooth_scale.py"
 print args.pnumber
 
-filename = "../raw/datafiles/combine/tc_accel_gyro_label_" + args.pnumber
+filename = "../raw/datafiles/combine/tc_accel_gyro_label_" + args.pnumber + ".csv"
 
 # Read data from a text file
 all_cols = genfromtxt( filename, comments='#', delimiter=",")
@@ -86,4 +86,4 @@ data_cols_smoothened_normalized = preprocessing.normalize(data_cols_smoothened, 
 # Add relative timestamp
 data_cols_smoothened_final = column_stack((all_cols[:,1],data_cols_smoothened))
 
-savetxt("../raw/datafiles/combine/tc_accel_gyro_label_" + args.pnumber, data_cols_smoothened_final, delimiter=",")
+savetxt("../raw/datafiles/combine/tc_ss_accel_gyro_label_" + args.pnumber + ".csv", data_cols_smoothened_final, delimiter=",")

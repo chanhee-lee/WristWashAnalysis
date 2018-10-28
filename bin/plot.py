@@ -2,7 +2,6 @@ import matplotlib
 matplotlib.use('TkAgg')
 import matplotlib.pyplot as plt
 
-
 def plot_data_3D(data):
     # print(data)
     plt.title('X,Y,Z Plot')
