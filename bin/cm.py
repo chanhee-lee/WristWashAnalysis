@@ -35,7 +35,7 @@ step_size = step_size_seconds * sampling_rate
 # Get training file for each participant
 first_time_in_loop = 1
 for target_participant_counter in xrange(1,2):
-    participant_file = '../raw/datafiles/combine/tc_ss_accel_gyro_label_' + args.pnumber + '.csv'
+    participant_file = '../raw/participant' + target_participant_counter + '/gestures_combined_' + target_participant_counter + '.csv'
 
     print ""
     print "File: " + participant_file

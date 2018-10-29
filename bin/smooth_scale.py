@@ -43,7 +43,7 @@ def zmv(values):
 
 
 # -----------------------------------------------------------------------------------
-#	Processing 
+#	Processing the 6 gesture data files in one participant 
 # -----------------------------------------------------------------------------------
 def ss(number):
 
@@ -57,28 +57,38 @@ def ss(number):
     print "smooth_scale.py"
     print args.pnumber
 
-    filename = "../raw/datafiles/combine/tc_accel_gyro_" + args.pnumber + ".csv"
+    for gesture_number in range(1, 7):
 
-    # Read data from a text file
-    all_cols = genfromtxt( filename, comments='#', delimiter=",")
+        filename = "../raw/participant" + args.pnumber + "/tc_accel_gyro_label_" + gesture_number + ".csv"
 
-    # Process only the data from accel, ignore the timestamps
-    data_cols = all_cols[:,1:]
+        # Read data from a text file
+        all_cols = genfromtxt( filename, comments='#', delimiter=",")
 
-    data_cols_smoothened_0 = zmv(data_cols[:,0])
-    data_cols_smoothened_1 = zmv(data_cols[:,1])
-    data_cols_smoothened_2 = zmv(data_cols[:,2])
+        # Process only the data from accel, ignore the timestamps
+        data_cols = all_cols[:,1:]
 
-    data_cols_smoothened = data_cols_smoothened_0
-    data_cols_smoothened = column_stack((data_cols_smoothened, data_cols_smoothened_1))
-    data_cols_smoothened = column_stack((data_cols_smoothened, data_cols_smoothened_2))
-    """
-    # Normalize
-    data_cols_smoothened_normalized = preprocessing.normalize(data_cols_smoothened, norm='l2')
-    """
+        data_cols_smoothened_0 = zmv(data_cols[:,0])
+        data_cols_smoothened_1 = zmv(data_cols[:,1])
+        data_cols_smoothened_2 = zmv(data_cols[:,2])
 
-    # Add relative timestamp
-    data_cols_smoothened_final = data_cols_smoothened
-    plot.plot_data_3D(data_cols_smoothened_final)
+        # Temp solution 
+        data_label = []
+        for i in range(0,len(data_cols_smoothened_0)):
+            data_label.append(1)
+        #############
 
-    savetxt("../raw/datafiles/combine/tc_ss_accel_gyro_" + args.pnumber + ".csv", data_cols_smoothened_final, delimiter=",")
+        data_cols_smoothened = data_cols_smoothened_0
+        data_cols_smoothened = column_stack((data_cols_smoothened, data_cols_smoothened_1))
+        data_cols_smoothened = column_stack((data_cols_smoothened, data_cols_smoothened_2))
+        data_cols_smoothened = column_stack((data_cols_smoothened, data_label))
+        
+        """
+        # Normalize
+        data_cols_smoothened_normalized = preprocessing.normalize(data_cols_smoothened, norm='l2')
+        """
+
+        # Add relative timestamp
+        data_cols_smoothened_final = data_cols_smoothened
+        plot.plot_data_3D(data_cols_smoothened_final)
+
+        savetxt("../raw/participant" + args.pnumber + "/tc_ss_accel_gyro_label_" + gesture_number + ".csv", data_cols_smoothened_final, delimiter=",")
