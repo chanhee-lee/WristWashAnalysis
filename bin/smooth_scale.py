@@ -3,12 +3,10 @@ from scipy.signal import *
 from sklearn import preprocessing
 from numpy import * 
 import numpy as np
+import plot 
 
 from argparse import ArgumentParser
 
-parser = ArgumentParser()
-parser.add_argument("pnumber")
-args = parser.parse_args()
 
 # -----------------------------------------------------------------------------------
 #	Processes data through zero mean variance 
@@ -47,43 +45,40 @@ def zmv(values):
 # -----------------------------------------------------------------------------------
 #	Processing 
 # -----------------------------------------------------------------------------------
+def ss(number):
 
-# read from file 
-# pass into zmv 
-# write to file 
+    parser = ArgumentParser()
+    parser.add_argument("pnumber")
+    args = parser.parse_args()
 
-x_labeled = []
-y_labeled = []
-z_labeled = []
+    # read from file 
+    # pass into zmv 
+    # write to file 
+    print "smooth_scale.py"
+    print args.pnumber
 
-##############
-parser = ArgumentParser()
-parser.add_argument("pnumber")
-args = parser.parse_args()
-print "smooth_scale.py"
-print args.pnumber
+    filename = "../raw/datafiles/combine/tc_accel_gyro_label_" + args.pnumber + ".csv"
 
-filename = "../raw/datafiles/combine/tc_accel_gyro_label_" + args.pnumber + ".csv"
+    # Read data from a text file
+    all_cols = genfromtxt( filename, comments='#', delimiter=",")
 
-# Read data from a text file
-all_cols = genfromtxt( filename, comments='#', delimiter=",")
+    # Process only the data from accel, ignore the timestamps
+    data_cols = all_cols[:,1:]
 
-# Process only the data from accel, ignore the timestamps
-data_cols = all_cols[:,2:]
+    data_cols_smoothened_0 = zmv(data_cols[:,0])
+    data_cols_smoothened_1 = zmv(data_cols[:,1])
+    data_cols_smoothened_2 = zmv(data_cols[:,2])
 
-data_cols_smoothened_0 = zmv(data_cols[:,0])
-data_cols_smoothened_1 = zmv(data_cols[:,1])
-data_cols_smoothened_2 = zmv(data_cols[:,2])
+    data_cols_smoothened = data_cols_smoothened_0
+    data_cols_smoothened = column_stack((data_cols_smoothened, data_cols_smoothened_1))
+    data_cols_smoothened = column_stack((data_cols_smoothened, data_cols_smoothened_2))
+    """
+    # Normalize
+    data_cols_smoothened_normalized = preprocessing.normalize(data_cols_smoothened, norm='l2')
+    """
 
-data_cols_smoothened = data_cols_smoothened_0
-data_cols_smoothened = column_stack((data_cols_smoothened, data_cols_smoothened_1))
-data_cols_smoothened = column_stack((data_cols_smoothened, data_cols_smoothened_2))
-"""
-# Normalize
-data_cols_smoothened_normalized = preprocessing.normalize(data_cols_smoothened, norm='l2')
-"""
+    # Add relative timestamp
+    data_cols_smoothened_final = data_cols_smoothened
+    plot.plot_data_3D(data_cols_smoothened_final)
 
-# Add relative timestamp
-data_cols_smoothened_final = column_stack((all_cols[:,1],data_cols_smoothened))
-
-savetxt("../raw/datafiles/combine/tc_ss_accel_gyro_label_" + args.pnumber + ".csv", data_cols_smoothened_final, delimiter=",")
+    savetxt("../raw/datafiles/combine/tc_ss_accel_gyro_label_" + args.pnumber + ".csv", data_cols_smoothened_final, delimiter=",")
