@@ -57,7 +57,7 @@ def ss(number):
     print "smooth_scale.py"
     print args.pnumber
 
-    filename = "../raw/datafiles/combine/tc_accel_gyro_label_" + args.pnumber + ".csv"
+    filename = "../raw/datafiles/combine/tc_accel_gyro_" + args.pnumber + ".csv"
 
     # Read data from a text file
     all_cols = genfromtxt( filename, comments='#', delimiter=",")
@@ -81,4 +81,4 @@ def ss(number):
     data_cols_smoothened_final = data_cols_smoothened
     plot.plot_data_3D(data_cols_smoothened_final)
 
-    savetxt("../raw/datafiles/combine/tc_ss_accel_gyro_label_" + args.pnumber + ".csv", data_cols_smoothened_final, delimiter=",")
+    savetxt("../raw/datafiles/combine/tc_ss_accel_gyro_" + args.pnumber + ".csv", data_cols_smoothened_final, delimiter=",")

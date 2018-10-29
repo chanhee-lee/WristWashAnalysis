@@ -36,48 +36,33 @@ def tc(number):
     # Sampling Rate Constant
     SAMPLING_RATE = 100
 
-    # Labels for each hand washing gesture
-    label = ""
-    if int(args.pnumber) % 6 == 1:
-        label = "Rubbing Palms"
-    elif int(args.pnumber) % 6 == 2:
-        label = "Rubbing Back of Left Hand"
-    elif int(args.pnumber) % 6 == 3:
-        label = "Rubbing Back of Right Hand"
-    elif int(args.pnumber) % 6 == 4:
-        label = "Rubbing Between Fingers"
-    elif int(args.pnumber) % 6 == 5:
-        label = "Rubbing Under Right Nails"
-    elif int(args.pnumber) % 6 == 0:
-        label = "Rubbing Under Left Nails"
-    else:
-        label = "No Movement"
-
-    with open("../raw/datafiles/combine/tc_accel_gyro_label_" + args.pnumber + ".csv", 'wb') as csvoutputfile:
+    with open("../raw/participant" + number + "/tc_accel_gyro.csv", 'wb') as csvoutputfile:
 
         csvwriter = csv.writer(csvoutputfile, delimiter=',', quotechar='|', quoting=csv.QUOTE_MINIMAL)
 
         # loads accel data into lists
-        with open('../raw/datafiles/accel/ACCEL' + args.pnumber + '.csv', 'rb') as csvinputfile:
+        for i in range(1,7,1):
 
-            csvreader = csv.reader(csvinputfile, delimiter=',', quotechar='|')
+            with open('../raw/datafiles/accel/ACCEL' + str(i) + '.csv', 'rb') as csvinputfile:
 
-            for row in csvreader:
-                accelX.append(float(row[1]))
-                accelY.append(float(row[2]))
-                accelZ.append(float(row[3]))
+                csvreader = csv.reader(csvinputfile, delimiter=',', quotechar='|')
 
-        # loads gyro data into lists
-        with open('../raw/datafiles/gyro/GYRO' + args.pnumber + '.csv', 'rb') as csvinputfile:
+                for row in csvreader:
+                    accelX.append(float(row[1]))
+                    accelY.append(float(row[2]))
+                    accelZ.append(float(row[3]))
 
-            csvreader = csv.reader(csvinputfile, delimiter=',', quotechar='|')
+            # loads gyro data into lists
+            with open('../raw/datafiles/gyro/GYRO' + str(i) + '.csv', 'rb') as csvinputfile:
 
-            for row in csvreader:
-                gyroX.append(float(row[1]))
-                gyroY.append(float(row[2]))
-                gyroZ.append(float(row[3]))
+                csvreader = csv.reader(csvinputfile, delimiter=',', quotechar='|')
 
-        plotlist = []    
+                for row in csvreader:
+                    gyroX.append(float(row[1]))
+                    gyroY.append(float(row[2]))
+                    gyroZ.append(float(row[3]))
+
+            plotlist = []
         for i in range(0, len(accelX), 1):
             row = [] # truncate decimal to first decimal
             plotrow = []
@@ -88,8 +73,8 @@ def tc(number):
             row.append(gyroX[i])
             row.append(gyroY[i])
             row.append(gyroZ[i])
-            row.append(label)
             csvwriter.writerow(row)
+
             plotrow.append(accelX[i])
             plotrow.append(accelY[i])
             plotrow.append(accelZ[i])
