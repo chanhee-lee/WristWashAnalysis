@@ -20,9 +20,9 @@ from scipy.signal import *
 from numpy import *
 from argparse import ArgumentParser
 
-parser = ArgumentParser()
-parser.add_argument("pnumber")
-args = parser.parse_args()
+# parser = ArgumentParser()
+# parser.add_argument("pnumber")
+# args = parser.parse_args()
 
 frame_size_seconds = 6
 step_size_seconds = int(frame_size_seconds/2)
@@ -35,13 +35,13 @@ step_size = step_size_seconds * sampling_rate
 # Get training file for each participant
 first_time_in_loop = 1
 for target_participant_counter in xrange(1,2):
-    participant_file = '../raw/participant' + target_participant_counter + '/gestures_combined_' + target_participant_counter + '.csv'
+    participant_file = '../raw/participant' + str(target_participant_counter) + '/gestures_combined_' + str(target_participant_counter) + '.csv'
 
     print ""
     print "File: " + participant_file
     print ""
 
-	# D: N-dimensional array that delimits waccel_tc_ss_label by , 
+	# D: N-dimensional array that delimits waccel_tc_ss_label by ,
     D = genfromtxt(participant_file, delimiter=',')
 
     # Z is a stack of participant datas stacked vertically 

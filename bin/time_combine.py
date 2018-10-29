@@ -36,14 +36,14 @@ def tc(number):
     # Sampling Rate Constant
     SAMPLING_RATE = 100
 
-    with open("../raw/participant" + number + "/tc_accel_gyro.csv", 'wb') as csvoutputfile:
+    for gesture_number in range(1, 7, 1):
 
-        csvwriter = csv.writer(csvoutputfile, delimiter=',', quotechar='|', quoting=csv.QUOTE_MINIMAL)
+        with open("../raw/participant" + number + "/tc_accel_gyro_" + str(gesture_number) + ".csv", 'wb') as csvoutputfile:
 
-        # loads accel data into lists
-        for i in range(1,7,1):
+            csvwriter = csv.writer(csvoutputfile, delimiter=',', quotechar='|', quoting=csv.QUOTE_MINIMAL)
 
-            with open('../raw/datafiles/accel/ACCEL' + str(i) + '.csv', 'rb') as csvinputfile:
+            # loads accel data into lists
+            with open('../raw/participant' + number + '/ACCEL' + str(gesture_number) + '.csv', 'rb') as csvinputfile:
 
                 csvreader = csv.reader(csvinputfile, delimiter=',', quotechar='|')
 
@@ -53,7 +53,7 @@ def tc(number):
                     accelZ.append(float(row[3]))
 
             # loads gyro data into lists
-            with open('../raw/datafiles/gyro/GYRO' + str(i) + '.csv', 'rb') as csvinputfile:
+            with open('../raw/participant' + number + '/GYRO' + str(gesture_number) + '.csv', 'rb') as csvinputfile:
 
                 csvreader = csv.reader(csvinputfile, delimiter=',', quotechar='|')
 
@@ -62,22 +62,22 @@ def tc(number):
                     gyroY.append(float(row[2]))
                     gyroZ.append(float(row[3]))
 
-            plotlist = []
-        for i in range(0, len(accelX), 1):
-            row = [] # truncate decimal to first decimal
-            plotrow = []
-            row.append(float(i)/SAMPLING_RATE * 1000)
-            row.append(accelX[i])
-            row.append(accelY[i])
-            row.append(accelZ[i])
-            row.append(gyroX[i])
-            row.append(gyroY[i])
-            row.append(gyroZ[i])
-            csvwriter.writerow(row)
+                plotlist = []
+            for i in range(0, len(accelX), 1):
+                row = [] # truncate decimal to first decimal
+                plotrow = []
+                row.append(float(i)/SAMPLING_RATE * 1000)
+                row.append(accelX[i])
+                row.append(accelY[i])
+                row.append(accelZ[i])
+                row.append(gyroX[i])
+                row.append(gyroY[i])
+                row.append(gyroZ[i])
+                csvwriter.writerow(row)
 
-            plotrow.append(accelX[i])
-            plotrow.append(accelY[i])
-            plotrow.append(accelZ[i])
-            plotlist.append(plotrow)
-        
-        plot.plot_data_3D(plotlist)
+                plotrow.append(accelX[i])
+                plotrow.append(accelY[i])
+                plotrow.append(accelZ[i])
+                plotlist.append(plotrow)
+
+            #plot.plot_data_3D(plotlist)
