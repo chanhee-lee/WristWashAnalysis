@@ -14,6 +14,6 @@ parser.add_argument("pnumber")
 args = parser.parse_args()
 
 time_combine.tc(args.pnumber)
-smooth_scale.ss(args.pnumber)
 
+smooth_scale.ss(args.pnumber)
 
