@@ -4,7 +4,7 @@ import csv
 import matplotlib.pyplot as plt
 import pandas as pd
 from sklearn.pipeline import Pipeline
-from sklearn import svm, neighbors, metrics, cross_validation
+from sklearn import svm, neighbors, metrics, model_selection #cross_validation
 #from sklearn.model_selection import cross_validation
 from sklearn.externals import joblib
 from sklearn.tree import DecisionTreeClassifier
@@ -102,7 +102,8 @@ X = All[:,:number_of_inputs*5]
 Y = All[:,number_of_inputs*5]
 
 # Split the data into a training set and a test set
-X_train, X_test, y_train, y_test = cross_validation.train_test_split(X, Y, random_state=42, test_size=0.33)
+##X_train, X_test, y_train, y_test = cross_validation.train_test_split(X, Y, random_state=42, test_size=0.33)
+X_train, X_test, y_train, y_test = model_selection.train_test_split(X, Y, test_size=0.33, random_state=42)
 
 # Run classifier
 classifier = RandomForestClassifier(n_estimators=185)
