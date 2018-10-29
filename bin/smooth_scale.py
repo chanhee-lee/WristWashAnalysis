@@ -74,7 +74,7 @@ def ss(number):
         # Temp solution 
         data_label = []
         for i in range(0,len(data_cols_smoothened_0)):
-            data_label.append(1)
+            data_label.append(gesture_number)
         #############
 
         data_cols_smoothened = data_cols_smoothened_0
