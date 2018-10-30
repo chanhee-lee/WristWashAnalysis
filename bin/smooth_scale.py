@@ -89,6 +89,6 @@ def ss(number):
 
         # Add relative timestamp
         data_cols_smoothened_final = data_cols_smoothened
-        plot.plot_data_3D(data_cols_smoothened_final)
+        #plot.plot_data_3D(data_cols_smoothened_final)
 
         savetxt("../raw/participant" + args.pnumber + "/tc_ss_accel_gyro_label_" + str(gesture_number) + ".csv", data_cols_smoothened_final, delimiter=",")

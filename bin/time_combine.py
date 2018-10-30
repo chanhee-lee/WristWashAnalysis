@@ -63,7 +63,7 @@ def tc(number):
                     gyroZ.append(float(row[3]))
 
                 plotlist = []
-            for i in range(0, len(accelX), 1):
+            for i in range(0, min(len(accelX), len(gyroX)), 1):
                 row = [] # truncate decimal to first decimal
                 plotrow = []
                 row.append(float(i)/SAMPLING_RATE * 1000)

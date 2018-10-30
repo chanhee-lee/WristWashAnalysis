@@ -7,7 +7,6 @@ from argparse import ArgumentParser
 
 import time_combine
 import smooth_scale
-import gesture_combine
 
 parser = ArgumentParser()
 parser.add_argument("pnumber")
@@ -15,5 +14,4 @@ args = parser.parse_args()
 
 time_combine.tc(args.pnumber)
 smooth_scale.ss(args.pnumber)
-gesture_combine.gc(args.pnumber)
 
