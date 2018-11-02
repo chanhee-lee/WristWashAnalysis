@@ -24,6 +24,8 @@ from argparse import ArgumentParser
 # parser.add_argument("pnumber")
 # args = parser.parse_args()
 
+# Split data 30, 70, Process individually, then use one as test and other as train 
+
 frame_size_seconds = 6
 step_size_seconds = int(frame_size_seconds/2)
 sampling_rate = 15
@@ -101,6 +103,10 @@ for counter in xrange(0,len(Z),step_size):
 X = All[:,:number_of_inputs*5]
 Y = All[:,number_of_inputs*5]
 
+# Set up Model
+modelClassifier = RandomForestClassifier(n_estimators=185)
+modelClassifier.fit(X, Y)
+
 # Split the data into a training set and a test set
 ##X_train, X_test, y_train, y_test = cross_validation.train_test_split(X, Y, random_state=42, test_size=0.33)
 X_train, X_test, y_train, y_test = model_selection.train_test_split(X, Y, test_size=0.33, random_state=42)
@@ -126,3 +132,12 @@ plt.colorbar()
 plt.ylabel('True label')
 plt.xlabel('Predicted label')
 plt.show()
+
+# Dump model
+joblib.dump(modelClassifier, '../model/washmodel.pkl')
+
+## Find code to dump into model 
+### joblib.dump(clf, '../model/wrist.pkl')
+## https://stackoverflow.com/questions/24906126/how-to-unpack-pkl-file
+## http://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html#sklearn.ensemble.RandomForestClassifier
+## Use methods on unpacked pkl file --> saved classifier 
