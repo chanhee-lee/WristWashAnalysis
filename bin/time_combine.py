@@ -2,8 +2,9 @@
 import csv
 from argparse import ArgumentParser
 import plot
+import math
 
-def tc(number):
+def tc(pnumber, filename, newfilename):
 
     parser = ArgumentParser()
     parser.add_argument("pnumber")
@@ -13,10 +14,8 @@ def tc(number):
     # -------------------------------------------------------------------------------
     #
     # 	Combines timestamp in milliseconds, accelerometer, and gyroscope data
-    #   into another file tc_accel_gyro_label_fileNumber.csv
-    #   To execute this file (time_combine.py), in your terminal type
-    #   python time_combine.py number
-    #   number is the file number attached to the end of your accel/gyro.csv
+    #   into another file ...
+    #   To execute this file ...
     #
     # -------------------------------------------------------------------------------
 
@@ -24,11 +23,13 @@ def tc(number):
     accelX = []
     accelY = []
     accelZ = []
+    accelMag = []
 
     # gyro data
     gyroX = []
     gyroY = []
     gyroZ = []
+    gyroMag = []
 
     # time stamps
     timeStamps = []
@@ -38,12 +39,12 @@ def tc(number):
 
     for gesture_number in range(1, 7, 1):
 
-        with open("../raw/participant" + number + "/tc_accel_gyro_" + str(gesture_number) + ".csv", 'wb') as csvoutputfile:
+        with open("../raw/participant" + str(pnumber) + "/" + newfilename + str(gesture_number) + ".csv", 'wb') as csvoutputfile:
 
             csvwriter = csv.writer(csvoutputfile, delimiter=',', quotechar='|', quoting=csv.QUOTE_MINIMAL)
 
             # loads accel data into lists
-            with open('../raw/participant' + number + '/ACCEL' + str(gesture_number) + '.csv', 'rb') as csvinputfile:
+            with open('../raw/participant' + str(pnumber) + '/ACCEL' + str(gesture_number) + '.csv', 'rb') as csvinputfile:
 
                 csvreader = csv.reader(csvinputfile, delimiter=',', quotechar='|')
 
@@ -51,9 +52,10 @@ def tc(number):
                     accelX.append(float(row[1]))
                     accelY.append(float(row[2]))
                     accelZ.append(float(row[3]))
+                    accelMag.append(mag(float(row[1]),float(row[2]),float(row[3])))
 
             # loads gyro data into lists
-            with open('../raw/participant' + number + '/GYRO' + str(gesture_number) + '.csv', 'rb') as csvinputfile:
+            with open('../raw/participant' + str(pnumber) + '/GYRO' + str(gesture_number) + '.csv', 'rb') as csvinputfile:
 
                 csvreader = csv.reader(csvinputfile, delimiter=',', quotechar='|')
 
@@ -61,8 +63,10 @@ def tc(number):
                     gyroX.append(float(row[1]))
                     gyroY.append(float(row[2]))
                     gyroZ.append(float(row[3]))
+                    gyroMag.append(mag(float(row[1]),float(row[2]),float(row[3])))
 
                 plotlist = []
+            
             for i in range(0, min(len(accelX), len(gyroX)), 1):
                 row = [] # truncate decimal to first decimal
                 plotrow = []
@@ -70,9 +74,11 @@ def tc(number):
                 row.append(accelX[i])
                 row.append(accelY[i])
                 row.append(accelZ[i])
+                row.append(accelMag[i])
                 row.append(gyroX[i])
                 row.append(gyroY[i])
                 row.append(gyroZ[i])
+                row.append(gyroMag[i])
                 csvwriter.writerow(row)
 
                 plotrow.append(accelX[i])
@@ -81,3 +87,6 @@ def tc(number):
                 plotlist.append(plotrow)
 
             #plot.plot_data_3D(plotlist)
+
+def mag(x, y, z):
+    return math.sqrt(x**2 + y**2 + z**2)
