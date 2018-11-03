@@ -19,20 +19,7 @@ def tc(pnumber, filename, newfilename):
     #
     # -------------------------------------------------------------------------------
 
-    # accel data
-    accelX = []
-    accelY = []
-    accelZ = []
-    accelMag = []
 
-    # gyro data
-    gyroX = []
-    gyroY = []
-    gyroZ = []
-    gyroMag = []
-
-    # time stamps
-    timeStamps = []
 
     # Sampling Rate Constant
     SAMPLING_RATE = 100
@@ -42,7 +29,21 @@ def tc(pnumber, filename, newfilename):
         with open("../raw/participant" + str(pnumber) + "/" + newfilename + str(gesture_number) + ".csv", 'wb') as csvoutputfile:
 
             csvwriter = csv.writer(csvoutputfile, delimiter=',', quotechar='|', quoting=csv.QUOTE_MINIMAL)
+            # accel data
+            accelX = []
+            accelY = []
+            accelZ = []
+            accelMag = []
 
+            # gyro data
+            gyroX = []
+            gyroY = []
+            gyroZ = []
+            gyroMag = []
+
+            # time stamps
+            timeStamps = []
+            
             # loads accel data into lists
             with open('../raw/participant' + str(pnumber) + '/ACCEL' + str(gesture_number) + '.csv', 'rb') as csvinputfile:
 

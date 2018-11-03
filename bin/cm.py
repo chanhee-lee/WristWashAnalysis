@@ -4,8 +4,7 @@ import csv
 import matplotlib.pyplot as plt
 import pandas as pd
 from sklearn.pipeline import Pipeline
-from sklearn import svm, neighbors, metrics, model_selection #cross_validation
-#from sklearn.model_selection import cross_validation
+from sklearn import svm, neighbors, metrics, model_selection
 from sklearn.externals import joblib
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.ensemble import RandomForestClassifier, ExtraTreesClassifier, AdaBoostClassifier
@@ -37,26 +36,31 @@ step_size = step_size_seconds * sampling_rate
 # Get training file for each participant
 first_time_in_loop = 1
 for target_participant_counter in xrange(1,2):
-    participant_file = '../raw/participant' + str(target_participant_counter) + '/gestures_combined_' + str(target_participant_counter) + '.csv'
-
-    print ""
-    print "File: " + participant_file
-    print ""
+	test_file = '../raw/participant' + str(target_participant_counter) + '/gestures_combined_test' + '.csv'
+	train_file = '../raw/participant' + str(target_participant_counter) + '/gestures_combined_train' + '.csv'
+    
+	print ""
+	print "File: " + test_file + ", " + train_file
+	print ""
 
 	# D: N-dimensional array that delimits waccel_tc_ss_label by ,
-    D = genfromtxt(participant_file, delimiter=',')
+	D_test = genfromtxt(test_file, delimiter=',')
+	D_train = genfromtxt(train_file, delimiter=',')
 
-    # Z is a stack of participant datas stacked vertically 
+    # Stacked_Participant is a stack of participant datas stacked vertically 
 	# If first time in loop, set Z to D
-    if first_time_in_loop==1:
+	if first_time_in_loop==1:
 		first_time_in_loop = 0
-		Z = D
+		StackedP_Test = D_test
+		StackedP_Train = D_train
 	# Else stack Z on top of D # Adds D on bottom 
-    else:
-		Z = vstack((Z,D))
+	else:
+		StackedP_Test = vstack((StackedP_Test, D_Test))
+		StackedP_Train = vstack((StackedP_Train, D_Train))
 
 # Number of inputs # .shape[1] gives number of columns # the number of entries in one input 
-number_of_inputs = Z.shape[1] - 1
+last_col_test = StackedP_Test.shape[1] - 1
+last_col_train = StackedP_Train.shape[1] - 1
 # should be called index of last column 
 
 # -----------------------------------------------------------------------------------
@@ -66,46 +70,82 @@ number_of_inputs = Z.shape[1] - 1
 # -----------------------------------------------------------------------------------
 
 # Calculate features for frame
-for counter in xrange(0,len(Z),step_size):
+for counter in xrange(0,len(StackedP_Test),step_size):
 	
 	# Get the label # from counter row # label is in last column (num_of_input)
-	L = Z[counter, number_of_inputs]
+	L_Test = StackedP_Test[counter, last_col_test]
 
     # Get rows from which to calculate features
 	# row: frame size from counter onwards
 	# col: beginning to number of columns 
-	R = Z[counter:counter+frame_size, :number_of_inputs]
+	R_Test = StackedP_Test[counter:counter+frame_size, :last_col_test]
 
 	# Calculate features
-	M = mean(R,axis=0) # Mean
-	V = var(R,axis=0) # Variance
-	SK = stats.skew(R,axis=0) # ND skew
-	K = stats.kurtosis(R,axis=0) # ND Kurtosis
-	RMS = sqrt(mean(R**2,axis=0)) # Root Mean Square
+	M_test = mean(R_Test,axis=0) # Mean
+	V_test = var(R_Test,axis=0) # Variance
+	SK_test = stats.skew(R_Test,axis=0) # ND skew
+	K_test = stats.kurtosis(R_Test,axis=0) # ND Kurtosis
+	RMS_test = sqrt(mean(R_Test**2,axis=0)) # Root Mean Square
 
-	# H should be stacked arrays of : M, V, SK, K, RMS, L 
-	H = hstack((M,V))
-	H = hstack((H,SK))
-	H = hstack((H,K))
-	H = hstack((H,RMS))
+	# H and G should be stacked arrays of : M, V, SK, K, RMS, L 
+	H = hstack((M_test,V_test))
+	H = hstack((H,SK_test))
+	H = hstack((H,K_test))
+	H = hstack((H,RMS_test))
 
-	H = hstack((H,L))
+	H = hstack((H,L_Test))
 	# All: Stacks all hstacks vertically 
 	# Row: Horizontally stacked features for on data
 	# Col: All the features 
 	if counter==0:
-		All = H
+		All_test = H
 	else:
-		All = vstack((All,H))
+		All_test = vstack((All_test,H))
+
+# Calculate features for frame
+for counter in xrange(0,len(StackedP_Train),step_size):
+	# Get the label # from counter row # label is in last column (num_of_input)
+	L_Train = StackedP_Train[counter, last_col_train]
+
+    # Get rows from which to calculate features
+	# row: frame size from counter onwards
+	# col: beginning to number of columns 
+	R_Train = StackedP_Train[counter:counter+frame_size, :last_col_train]
+
+	# Calculate features
+	M_train = mean(R_Train,axis=0) # Mean
+	V_train = var(R_Train,axis=0) # Variance
+	SK_train = stats.skew(R_Train,axis=0) # ND skew
+	K_train = stats.kurtosis(R_Train,axis=0) # ND Kurtosis
+	RMS_train = sqrt(mean(R_Train**2,axis=0)) # Root Mean Square
+
+	# H and G should be stacked arrays of : M, V, SK, K, RMS, L 
+	G = hstack((M_train,V_train))
+	G = hstack((G,SK_train))
+	G = hstack((G,K_train))
+	G = hstack((G,RMS_train))
+
+	G = hstack((G,L_Train))
+	# All: Stacks all hstacks vertically 
+	# Row: Horizontally stacked features for on data
+	# Col: All the features 
+	if counter==0:
+		All_train = G
+	else:
+		All_train = vstack((All_train, G))
+
 
 # Get features and labels
-# X is all the feature, Y is all the label # *5 because num of features? 
-X = All[:,:number_of_inputs*5]
-Y = All[:,number_of_inputs*5]
+# X is all the feature, Y is all the label 
+X_test = All_test[:,:last_col_test*5]
+Y_test = All_test[:,last_col_test*5]
+
+X_train = All_train[:,:last_col_train*5]
+Y_train = All_test[:,last_col_train*5]
 
 # Set up Model
 modelClassifier = RandomForestClassifier(n_estimators=185)
-modelClassifier.fit(X, Y)
+modelClassifier.fit(X_train, Y_train)
 
 # Split the data into a training set and a test set
 ##X_train, X_test, y_train, y_test = cross_validation.train_test_split(X, Y, random_state=42, test_size=0.33)
@@ -113,15 +153,15 @@ X_train, X_test, y_train, y_test = model_selection.train_test_split(X, Y, test_s
 
 # Run classifier
 classifier = RandomForestClassifier(n_estimators=185)
-y_pred = classifier.fit(X_train, y_train).predict(X_test)
+Y_pred = classifier.fit(X_train, Y_train).predict(X_test)
 
 #ct = pd.crosstab(y_test, y_pred, rownames=['True'], colnames=['Predicted'], margins=True).apply(lambda r: r/r.sum(), axis=1)
-ct = pd.crosstab(y_test, y_pred, rownames=['True'], colnames=['Predicted'], margins=True)
+ct = pd.crosstab(Y_test, y_pred, rownames=['True'], colnames=['Predicted'], margins=True)
 
 print (ct)
 
 # Compute confusion matrix
-cm = confusion_matrix(y_test, y_pred)
+cm = confusion_matrix(Y_test, Y_pred)
 
 # print(cm)
 
