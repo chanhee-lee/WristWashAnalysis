@@ -45,7 +45,7 @@ def zmv(values):
 # -----------------------------------------------------------------------------------
 #	Processing the 6 gesture data files in one participant 
 # -----------------------------------------------------------------------------------
-def ss(number):
+def ss(pnumber, ofilename, ext):
 
     parser = ArgumentParser()
     parser.add_argument("pnumber")
@@ -59,19 +59,17 @@ def ss(number):
 
     for gesture_number in range(1, 7):
 
-        filename = "../raw/participant" + args.pnumber + "/tc_accel_gyro_" + str(gesture_number) + ".csv"
+        filename = "../raw/participant" + str(pnumber) + "/" + ofilename + str(gesture_number) + ext + ".csv"
 
         # Read data from a text file
-        all_cols = genfromtxt( filename, comments='#', delimiter=",")
+        all_cols = genfromtxt(filename, comments='#', delimiter=",")
 
-        # Process only the data from accel, ignore the timestamps
-        data_cols = all_cols[:,1:]
+        data_cols_smoothened_0 = zmv(all_cols[:,0])
+        data_cols_smoothened_1 = zmv(all_cols[:,1])
+        data_cols_smoothened_2 = zmv(all_cols[:,2])
+        data_cols_smoothened_3 = zmv(all_cols[:,3])
 
-        data_cols_smoothened_0 = zmv(data_cols[:,0])
-        data_cols_smoothened_1 = zmv(data_cols[:,1])
-        data_cols_smoothened_2 = zmv(data_cols[:,2])
-
-        # Temp solution 
+        # Create labels for data 
         data_label = []
         for i in range(0,len(data_cols_smoothened_0)):
             data_label.append(gesture_number)
@@ -80,6 +78,7 @@ def ss(number):
         data_cols_smoothened = data_cols_smoothened_0
         data_cols_smoothened = column_stack((data_cols_smoothened, data_cols_smoothened_1))
         data_cols_smoothened = column_stack((data_cols_smoothened, data_cols_smoothened_2))
+        data_cols_smoothened = column_stack((data_cols_smoothened, data_cols_smoothened_3))
         data_cols_smoothened = column_stack((data_cols_smoothened, data_label))
         
         """
@@ -91,4 +90,4 @@ def ss(number):
         data_cols_smoothened_final = data_cols_smoothened
         #plot.plot_data_3D(data_cols_smoothened_final)
 
-        savetxt("../raw/participant" + args.pnumber + "/tc_ss_accel_gyro_label_" + str(gesture_number) + ".csv", data_cols_smoothened_final, delimiter=",")
+        savetxt("../raw/participant" + str(pnumber) + "/" + ofilename + "ss_"+ str(gesture_number) + ext + ".csv", data_cols_smoothened_final, delimiter=",")
