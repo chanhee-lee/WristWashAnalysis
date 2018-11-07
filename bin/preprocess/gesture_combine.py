@@ -15,7 +15,7 @@ def gc(pnumber, filename, ext):
     first_time_in_loop = 1
     for part_number in range(1, pnumber + 1):
         for gdata_number in xrange(1,7):
-            participant_file = "../raw/participant" + str(part_number) + "/" + filename + str(gdata_number) + ext + ".csv"
+            participant_file = "../../raw/participant" + str(part_number) + "/" + filename + str(gdata_number) + ext + ".csv"
 
             # D: N-dimensional array that delimits waccel_tc_ss_label by ,
             D = genfromtxt(participant_file, delimiter=',')
@@ -29,4 +29,4 @@ def gc(pnumber, filename, ext):
             else:
                 Z = vstack((Z,D))
 
-        savetxt("../raw/participant" + str(part_number) + "/" + "gestures_combined" + ext + ".csv", Z, delimiter=",")
+        savetxt("../../raw/participant" + str(part_number) + "/" + "gestures_combined" + ext + ".csv", Z, delimiter=",")

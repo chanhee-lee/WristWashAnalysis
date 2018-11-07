@@ -68,7 +68,7 @@ last_col_train = StackedP_Train.shape[1] - 1
 #
 # -----------------------------------------------------------------------------------
 
-# Calculate features for frame
+# Calculate features for frame for TEST
 for counter in xrange(0,len(StackedP_Test),step_size):
 	
 	# Get the label # from counter row # label is in last column (num_of_input)
@@ -101,7 +101,7 @@ for counter in xrange(0,len(StackedP_Test),step_size):
 	else:
 		All_test = vstack((All_test,H))
 
-# Calculate features for frame
+# Calculate features for frame for TRAIN
 for counter in xrange(0,len(StackedP_Train),step_size):
 	# Get the label # from counter row # label is in last column (num_of_input)
 	L_Train = StackedP_Train[counter, last_col_train]

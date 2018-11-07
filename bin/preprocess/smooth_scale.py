@@ -59,7 +59,7 @@ def ss(pnumber, ofilename, ext):
 
     for gesture_number in range(1, 7):
 
-        filename = "../raw/participant" + str(pnumber) + "/" + ofilename + str(gesture_number) + ext + ".csv"
+        filename = "../../raw/participant" + str(pnumber) + "/" + ofilename + str(gesture_number) + ext + ".csv"
 
         # Read data from a text file
         all_cols = genfromtxt(filename, comments='#', delimiter=",")
@@ -90,4 +90,4 @@ def ss(pnumber, ofilename, ext):
         data_cols_smoothened_final = data_cols_smoothened
         #plot.plot_data_3D(data_cols_smoothened_final)
 
-        savetxt("../raw/participant" + str(pnumber) + "/" + ofilename + "ss_"+ str(gesture_number) + ext + ".csv", data_cols_smoothened_final, delimiter=",")
+        savetxt("../../raw/participant" + str(pnumber) + "/" + ofilename + "ss_"+ str(gesture_number) + ext + ".csv", data_cols_smoothened_final, delimiter=",")

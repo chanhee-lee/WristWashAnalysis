@@ -26,7 +26,7 @@ def tc(pnumber, filename, newfilename):
 
     for gesture_number in range(1, 7, 1):
 
-        with open("../raw/participant" + str(pnumber) + "/" + newfilename + str(gesture_number) + ".csv", 'wb') as csvoutputfile:
+        with open("../../raw/participant" + str(pnumber) + "/" + newfilename + str(gesture_number) + ".csv", 'wb') as csvoutputfile:
 
             csvwriter = csv.writer(csvoutputfile, delimiter=',', quotechar='|', quoting=csv.QUOTE_MINIMAL)
             # accel data
@@ -39,7 +39,7 @@ def tc(pnumber, filename, newfilename):
             timeStamps = []
             
             # loads accel data into lists
-            with open('../raw/participant' + str(pnumber) + '/ACCEL' + str(gesture_number) + '.csv', 'rb') as csvinputfile:
+            with open('../../raw/participant' + str(pnumber) + '/ACCEL' + str(gesture_number) + '.csv', 'rb') as csvinputfile:
 
                 csvreader = csv.reader(csvinputfile, delimiter=',', quotechar='|')
 
