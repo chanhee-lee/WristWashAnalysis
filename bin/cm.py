@@ -146,6 +146,7 @@ Y_train = All_train[:,last_col_train*5]
 # Set up Model
 modelClassifier = RandomForestClassifier(n_estimators=185)
 modelClassifier.fit(X_train, Y_train)
+print "SCORE: " + str(modelClassifier.score(X_test, Y_test))
 
 # Split the data into a training set and a test set
 #X_train, X_test, y_train, y_test = model_selection.train_test_split(X, Y, test_size=0.33, random_state=42)

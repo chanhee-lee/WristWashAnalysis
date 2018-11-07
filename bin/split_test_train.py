@@ -5,6 +5,11 @@ from sklearn import preprocessing
 from numpy import * 
 import numpy as np
 import plot 
+    # -------------------------------------------------------------------------------
+    #
+    # 	Splits single gesture data into test and train sets 
+    #
+    # -------------------------------------------------------------------------------
 
 TRAINRATIO = 0.7
 
@@ -40,28 +45,3 @@ def stt(pnumber, filename):
 
         savetxt("../raw/participant" + str(pnumber) + "/" + filename + str(gesture_number) + "_train" + ".csv", train_data, delimiter=",")
         savetxt("../raw/participant" + str(pnumber) + "/" + filename + str(gesture_number) + "_test" + ".csv", test_data, delimiter=",")
-
-"""
-
-        traindata = []
-        testdata = []
-
-        counter = 0
-
-        for row in csvreader: ######this is not working 
-            if (counter < trainLength):
-                traindata.append(row)
-            else: 
-                testdata.append(row)
-
-
-        with open("../raw/participant" + str(pnumber) + "/" + filename + str(gesture_number) + "_train.csv", 'wb') as csvoutputfile:
-            csvwritertrain = csv.writer(csvoutputfile, delimiter=',', quotechar='|', quoting=csv.QUOTE_MINIMAL)
-            for row in traindata:
-                csvwritertrain.writerow(row)
-
-        with open("../raw/participant" + str(pnumber) + "/" + filename + str(gesture_number) + "_test.csv", 'wb') as csvoutputfile:
-            csvwritertest = csv.writer(csvoutputfile, delimiter=',', quotechar='|', quoting=csv.QUOTE_MINIMAL)
-            for row in testdata: 
-                csvwritertest.writerow(row)
-"""

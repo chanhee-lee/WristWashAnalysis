@@ -5,7 +5,7 @@ smooth_scale.py, and annotation.py
 
 from argparse import ArgumentParser
 
-import time_combine
+import mag_append
 import smooth_scale
 import split_test_train
 import gesture_combine 
@@ -14,12 +14,12 @@ parser = ArgumentParser()
 parser.add_argument("pnumber")
 args = parser.parse_args()
 
-time_combine.tc(1, "na", "ag_tc_")
-split_test_train.stt(1, "ag_tc_")
-smooth_scale.ss(1, "ag_tc_", "_test")
-smooth_scale.ss(1, "ag_tc_", "_train")
-gesture_combine.gc(1, "ag_tc_ss_", "_test")
-gesture_combine.gc(1, "ag_tc_ss_", "_train")
+mag_append.tc(1, "na", "tc_")
+split_test_train.stt(1, "tc_")
+smooth_scale.ss(1, "tc_", "_test")
+smooth_scale.ss(1, "tc_", "_train")
+gesture_combine.gc(1, "tc_ss_", "_test")
+gesture_combine.gc(1, "tc_ss_", "_train")
 
 # time_combine(1, na, ag_tc_) # for 6 gestures
 # split_test_train(1, ag_tc_)
