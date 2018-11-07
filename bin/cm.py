@@ -19,15 +19,14 @@ from scipy.signal import *
 from numpy import *
 from argparse import ArgumentParser
 
-# parser = ArgumentParser()
-# parser.add_argument("pnumber")
-# args = parser.parse_args()
-
-# Split data 30, 70, Process individually, then use one as test and other as train 
+ # -------------------------------------
+ # Combines all data from participants, trains model from train set 
+ # and tests model on test set 
+ # -------------------------------------
 
 frame_size_seconds = 6
 step_size_seconds = int(frame_size_seconds/2)
-sampling_rate = 15
+sampling_rate = 15	
 
 # Set the frame and step size
 frame_size = frame_size_seconds * sampling_rate
@@ -43,11 +42,11 @@ for target_participant_counter in xrange(1,2):
 	print "File: " + test_file + ", " + train_file
 	print ""
 
-	# D: N-dimensional array that delimits waccel_tc_ss_label by ,
+	# D: N-dimensional array
 	D_test = genfromtxt(test_file, delimiter=',')
 	D_train = genfromtxt(train_file, delimiter=',')
 
-    # Stacked_Participant is a stack of participant datas stacked vertically 
+    # StackedP is a stack of participant datas stacked vertically 
 	# If first time in loop, set Z to D
 	if first_time_in_loop==1:
 		first_time_in_loop = 0
@@ -55,8 +54,8 @@ for target_participant_counter in xrange(1,2):
 		StackedP_Train = D_train
 	# Else stack Z on top of D # Adds D on bottom 
 	else:
-		StackedP_Test = vstack((StackedP_Test, D_Test))
-		StackedP_Train = vstack((StackedP_Train, D_Train))
+		StackedP_Test = vstack((StackedP_Test, D_test))
+		StackedP_Train = vstack((StackedP_Train, D_train))
 
 # Number of inputs # .shape[1] gives number of columns # the number of entries in one input 
 last_col_test = StackedP_Test.shape[1] - 1
@@ -65,7 +64,7 @@ last_col_train = StackedP_Train.shape[1] - 1
 
 # -----------------------------------------------------------------------------------
 #
-#									Training
+#							Feature Extraction and Training
 #
 # -----------------------------------------------------------------------------------
 
@@ -146,7 +145,7 @@ Y_train = All_train[:,last_col_train*5]
 # Set up Model
 modelClassifier = RandomForestClassifier(n_estimators=185)
 modelClassifier.fit(X_train, Y_train)
-print "SCORE: " + str(modelClassifier.score(X_test, Y_test))
+print "TOTAL SCORE: " + str(modelClassifier.score(X_test, Y_test))
 
 # Split the data into a training set and a test set
 #X_train, X_test, y_train, y_test = model_selection.train_test_split(X, Y, test_size=0.33, random_state=42)
