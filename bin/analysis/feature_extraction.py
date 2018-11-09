@@ -36,17 +36,7 @@ frame_size = frame_size_seconds * sampling_rate
 step_size = step_size_seconds * sampling_rate
 first_time_in_loop = 1
 
-def fe(filename):
-    D = genfromtxt(filename, delimiter=',')
-
-    # If first time in loop, set Z to D
-    if first_time_in_loop == 1:
-		first_time_in_loop = 0
-		StackedP = D
-	# Else stack Z on top of D # Adds D on bottom 
-    else:
-		StackedP = vstack((StackedP, D))
-
+def fe(StackedP):
     last_col = StackedP.shape[1] - 1
 
     # Calculate features for frame for TRAIN
@@ -66,7 +56,7 @@ def fe(filename):
         K = stats.kurtosis(R,axis=0) # ND Kurtosis
         RMS = sqrt(mean(R**2,axis=0)) # Root Mean Square
 
-        # H and G should be stacked arrays of : M, V, SK, K, RMS, L 
+        # G should be stacked arrays of : M, V, SK, K, RMS, L 
         G = hstack((M,V))
         G = hstack((G,SK))
         G = hstack((G,K))
@@ -80,4 +70,8 @@ def fe(filename):
             All = G
         else:
             All = vstack((All, G))
-    return All 
+
+    FVectors = All[:,:last_col*5]
+    True_Labels = All[:,last_col*5]
+    
+    return FVectors, True_Labels

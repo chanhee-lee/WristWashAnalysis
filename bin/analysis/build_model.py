@@ -18,6 +18,7 @@ from scipy.stats import *
 from scipy.signal import *
 from numpy import *
 from argparse import ArgumentParser
+import feature_extraction
 
 # -------------------------------------------------------------------------------
 #
@@ -27,11 +28,16 @@ from argparse import ArgumentParser
 #
 # -------------------------------------------------------------------------------
 
-def bm(trainfile): 
-    # Set up training file 
-    
+def bm(trainfilename, savename): 
+    # Set up training file 2D array 
+    train_file = genfromtxt(trainfilename, delimiter=',')
 
     # Feature Extraction 
+
+    FVectors, True_Labels = feature_extraction.fe(train_file)
+
+    # Train classifier    
+    classifier = RandomForestClassifier(n_estimators=185)
+    classifier.fit(FVectors, True_Labels)
     
-    
-    pass
+    joblib.dump(classifier, '../model/' + savename + '.pkl')
