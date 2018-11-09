@@ -60,6 +60,7 @@ def tc(pnumber, filename, newfilename):
                 csvwriter.writerow(row)
 
             #plot.plot_data_3D(plotlist)
+    print "Mag Append Saving..."
 
 def mag(x, y, z):
     return math.sqrt(x**2 + y**2 + z**2)

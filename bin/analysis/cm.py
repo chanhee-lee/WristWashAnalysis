@@ -26,7 +26,7 @@ from argparse import ArgumentParser
 
 frame_size_seconds = 6
 step_size_seconds = int(frame_size_seconds/2)
-sampling_rate = 15	
+sampling_rate = 15 
 
 # Set the frame and step size
 frame_size = frame_size_seconds * sampling_rate

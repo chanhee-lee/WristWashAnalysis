@@ -1,6 +1,3 @@
-
-
-
 # -------------------------------------------------------------------------------
 #
 # 	Evaluates the accuracy of model's predictions on X_test and Y_test
@@ -10,5 +7,12 @@
 #
 # -------------------------------------------------------------------------------
 
-def ea(filename, X_test, Y_test):
+def ea(model, testfile):
+
+    # Load Model 
+
+    # Feature extract test
+
+    # Compare Model to Test 
+
     pass

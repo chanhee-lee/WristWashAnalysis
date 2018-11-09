@@ -29,4 +29,5 @@ def gc(pnumber, filename, ext):
             else:
                 Z = vstack((Z,D))
 
-        savetxt("../../raw/participant" + str(part_number) + "/" + "gestures_combined" + ext + ".csv", Z, delimiter=",")
+        savetxt("../../raw/" + "total_gestures_combined" + ext + ".csv", Z, delimiter=",")
+    print "Gesture Combine Total Saving..."

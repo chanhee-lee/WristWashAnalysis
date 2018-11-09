@@ -16,46 +16,11 @@ def zmv(values):
     smooth_values = preprocessing.scale(values)
     return smooth_values
 
-"""
-# 3 Dimensional Version 
-def zmv(values):
-    x_raw = []
-    y_raw = []
-    z_raw = []
-
-    for row in values: 
-        x_raw.append(float(row[1]))
-        y_raw.append(float(row[1]))
-        z_raw.append(float(row[1]))
-    
-    x_scaled = preprocessing.scale(x_raw)
-    y_scaled = preprocessing.scale(y_raw)
-    z_scaled = preprocessing.scale(z_raw)
-
-    all_scaled = [] 
-    for i in range(0, len(x_raw), 1):
-        all_scaled.append(x_scaled[i])
-        all_scaled.append(y_scaled[i])
-        all_scaled.append(z_scaled[i])
-
-    return all_scaled
-"""
-
 
 # -----------------------------------------------------------------------------------
 #	Processing the 6 gesture data files in one participant 
 # -----------------------------------------------------------------------------------
 def ss(pnumber, ofilename, ext):
-
-    parser = ArgumentParser()
-    parser.add_argument("pnumber")
-    args = parser.parse_args()
-
-    # read from file 
-    # pass into zmv 
-    # write to file 
-    print "smooth_scale.py"
-    print args.pnumber
 
     for gesture_number in range(1, 7):
 
@@ -91,3 +56,4 @@ def ss(pnumber, ofilename, ext):
         #plot.plot_data_3D(data_cols_smoothened_final)
 
         savetxt("../../raw/participant" + str(pnumber) + "/" + ofilename + "ss_"+ str(gesture_number) + ext + ".csv", data_cols_smoothened_final, delimiter=",")
+    print "SmoothScale Saving..."
