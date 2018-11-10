@@ -23,10 +23,10 @@ for n in range(1,3):
 
 
 # Preprocess for n Participants without Split
-for n in range(1,4):
+for n in range(1,7):
     mag_append.tc(n, "na", "tc_")
     smooth_scale.ss(n, "tc_", "")
     gesture_combine_indiv.gc(n, "tc_ss_", "")
 
 # Creates file compiling all data from all participants 
-gesture_combine.gc(2, "tc_ss_", "")
+gesture_combine.gc(4, "tc_ss_", "")
