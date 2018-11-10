@@ -19,6 +19,8 @@ from scipy.signal import *
 from numpy import *
 from argparse import ArgumentParser
 import feature_extraction
+from scipy.spatial.distance import euclidean
+from fastdtw import fastdtw
 
 # -------------------------------------------------------------------------------
 #
@@ -28,6 +30,7 @@ import feature_extraction
 #   Returns a single integer score for the total accuracy
 #
 # -------------------------------------------------------------------------------
+
 
 def ea(modelname, testfilename):
     # Load Model 
@@ -40,11 +43,13 @@ def ea(modelname, testfilename):
     # Compare Model to Test 
     score = classifier.score(X_test, Y_test)
 
-    """
-    Y_pred = classifier.predict(X_test, Y_test)
+    ###"""
+    Y_pred = classifier.predict(X_test)
     # Cross Table
     ct = pd.crosstab(Y_test, Y_pred, rownames=['True'], colnames=['Predicted'], margins=True)
     print(ct)
+    
+    """
     # Confusion Matrix
     cm = confusion_matrix(Y_test, Y_pred)
     plt.matshow(cm)	
@@ -56,3 +61,6 @@ def ea(modelname, testfilename):
     """
 
     return score
+
+# https://pypi.org/project/fastdtw/
+# https://tslearn.readthedocs.io/en/latest/gen_modules/tslearn.metrics.html

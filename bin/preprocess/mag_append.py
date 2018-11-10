@@ -6,11 +6,6 @@ import math
 
 def tc(pnumber, filename, newfilename):
 
-    parser = ArgumentParser()
-    parser.add_argument("pnumber")
-    args = parser.parse_args()
-
-
     # -------------------------------------------------------------------------------
     #
     # 	Combines timestamp in milliseconds, accelerometer, and gyroscope data

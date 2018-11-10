@@ -161,9 +161,6 @@ print (ct)
 
 # Compute confusion matrix
 cm = confusion_matrix(Y_test, Y_pred)
-
-# print(cm)
-
 # Show confusion matrix in a separate window
 plt.matshow(cm)	
 plt.title('Confusion matrix')

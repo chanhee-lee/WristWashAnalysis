@@ -33,11 +33,10 @@ def bm(trainfilename, savename):
     train_file = genfromtxt(trainfilename, delimiter=',')
 
     # Feature Extraction 
-
     FVectors, True_Labels = feature_extraction.fe(train_file)
 
     # Train classifier    
     classifier = RandomForestClassifier(n_estimators=185)
     classifier.fit(FVectors, True_Labels)
     
-    joblib.dump(classifier, '../model/' + savename + '.pkl')
+    joblib.dump(classifier, savename)

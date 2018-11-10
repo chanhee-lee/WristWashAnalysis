@@ -23,10 +23,10 @@ def gc(pnumber, filename, ext):
         # If first time in loop, set Z to D
         if first_time_in_loop==1:
             first_time_in_loop = 0
-            Z = D
+            GestureStack = D
         # Stack each gesure 
         else:
-            Z = vstack((Z,D))
+            GestureStack = vstack((GestureStack,D))
     
     print "Gesture Combine Individual Saving..."
-    savetxt("../../raw/participant" + str(pnumber) + "/" + "gesture_combined" + str(pnumber) + ext + ".csv", Z, delimiter=",")
+    savetxt("../../raw/participant" + str(pnumber) + "/" + "gesture_combined" + str(pnumber) + ext + ".csv", GestureStack, delimiter=",")
